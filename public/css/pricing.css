@@ -352,6 +352,310 @@ main {
     }
 }
 
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.close {
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.close:hover {
+    transform: scale(1.2);
+}
+
+.modal-body {
+    padding: 30px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+#modal-candy-name {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.barrel-options-modal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.barrel-option-btn {
+    background: white;
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.barrel-option-btn:hover {
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    transform: translateY(-3px);
+}
+
+.barrel-option-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+}
+
+.barrel-visual-modal {
+    width: 40px;
+    height: 60px;
+    background: linear-gradient(to bottom, #ddd 0%, #ddd 0%, white 0%);
+    border: 2px solid #333;
+    border-radius: 4px;
+    margin: 0 auto 10px;
+    position: relative;
+}
+
+.barrel-visual-modal::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 2px;
+    right: 2px;
+    background: linear-gradient(to right, #FF6B6B, #FFA500, #FFD700);
+    border-radius: 2px;
+}
+
+.barrel-visual-modal.full::before {
+    height: 96%;
+}
+
+.barrel-visual-modal.three-quarter::before {
+    height: 72%;
+}
+
+.barrel-visual-modal.half::before {
+    height: 48%;
+}
+
+.barrel-visual-modal.quarter::before {
+    height: 24%;
+}
+
+.barrel-option-btn.active .barrel-visual-modal {
+    border-color: white;
+}
+
+.barrel-label-modal {
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.barrel-option-btn.active .barrel-label-modal {
+    color: white;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    flex-shrink: 0;
+    background: white;
+    border-top: 1px solid #eee;
+    justify-content: flex-end;
+}
+
+.modal-cancel-btn,
+.modal-ok-btn {
+    padding: 12px 30px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-cancel-btn {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.modal-cancel-btn:hover {
+    background: #d0d0d0;
+}
+
+.modal-ok-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.modal-ok-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.modal-ok-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Preview Section */
+.preview-section {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+.preview-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 10px;
+}
+
+.selections-preview {
+    min-height: 100px;
+}
+
+.empty-preview {
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    font-size: 1.1em;
+}
+
+.preview-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.preview-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.preview-item:hover {
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    transform: translateX(5px);
+}
+
+.preview-item-image {
+    flex-shrink: 0;
+}
+
+.preview-item-image img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.preview-item-details {
+    flex-grow: 1;
+}
+
+.preview-item-name {
+    font-weight: 600;
+    color: #333;
+    font-size: 1.05em;
+    margin-bottom: 5px;
+}
+
+.preview-item-info {
+    color: #667eea;
+    font-size: 0.95em;
+    font-weight: 600;
+}
+
+.preview-item-remove {
+    background: #ff4757;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.preview-item-remove:hover {
+    background: #ff3838;
+    transform: scale(1.1);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     header h1 {
@@ -372,6 +676,15 @@ main {
         align-items: flex-start;
         gap: 5px;
     }
+
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+
+    .barrel-options-modal {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -382,5 +695,15 @@ main {
 
     header h1 {
         font-size: 1.5em;
+    }
+
+    .preview-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .preview-item-remove {
+        width: 100%;
+        border-radius: 5px;
     }
 }

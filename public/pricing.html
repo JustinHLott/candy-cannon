@@ -132,33 +132,11 @@
                 </div>
             </section>
 
-            <!-- Barrel Fill Selection -->
-            <section class="selection-section">
-                <h2>Choose Barrel Fill Level</h2>
-                <div class="barrel-info">
-                    <p>Select how full you want to fill your cannon barrel</p>
-                </div>
-                <div class="barrel-options">
-                    <button class="barrel-btn" data-fill="100" data-multiplier="1.0">
-                        <div class="barrel-visual full"></div>
-                        <div class="barrel-label">100%</div>
-                        <div class="barrel-desc">Full Barrel</div>
-                    </button>
-                    <button class="barrel-btn" data-fill="75" data-multiplier="0.75">
-                        <div class="barrel-visual three-quarter"></div>
-                        <div class="barrel-label">75%</div>
-                        <div class="barrel-desc">Three Quarter</div>
-                    </button>
-                    <button class="barrel-btn" data-fill="50" data-multiplier="0.50">
-                        <div class="barrel-visual half"></div>
-                        <div class="barrel-label">50%</div>
-                        <div class="barrel-desc">Half Full</div>
-                    </button>
-                    <button class="barrel-btn" data-fill="25" data-multiplier="0.25">
-                        <div class="barrel-visual quarter"></div>
-                        <div class="barrel-label">25%</div>
-                        <div class="barrel-desc">Quarter Full</div>
-                    </button>
+            <!-- Selection Preview -->
+            <section class="preview-section">
+                <h2>Your Selections</h2>
+                <div id="selections-preview" class="selections-preview">
+                    <p class="empty-preview">No items selected yet. Click on a candy to add it!</p>
                 </div>
             </section>
 
@@ -167,16 +145,12 @@
                 <h2>Order Summary</h2>
                 <div class="summary-box">
                     <div class="summary-item">
-                        <span class="summary-label">Candy Name:</span>
-                        <span class="summary-value" id="selected-candy">Not selected</span>
+                        <span class="summary-label">Total Items:</span>
+                        <span class="summary-value" id="total-items">0</span>
                     </div>
                     <div class="summary-item">
-                        <span class="summary-label">Barrel %:</span>
-                        <span class="summary-value" id="selected-fill">Not selected</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Base Price:</span>
-                        <span class="summary-value" id="base-price">$0.00</span>
+                        <span class="summary-label">Total Barrels:</span>
+                        <span class="summary-value" id="total-barrels">🛢️ 0.00</span>
                     </div>
                     <div class="summary-divider"></div>
                     <div class="summary-item total">
@@ -185,11 +159,46 @@
                     </div>
                 </div>
                 <div class="button-group">
-                    <button class="add-to-cart-btn" disabled>Add to Cart</button>
+                    <button class="add-to-cart-btn" disabled>Add All to Cart</button>
                     <a href="cart.html" class="go-to-cart-btn">View Cart</a>
                 </div>
             </section>
         </main>
+
+        <!-- Barrel Selection Modal -->
+        <div id="barrelModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Select Barrel Fill Level</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-candy-name"></p>
+                    <div class="barrel-options-modal">
+                        <button class="barrel-option-btn" data-fill="100" data-multiplier="1.0">
+                            <div class="barrel-visual-modal full"></div>
+                            <div class="barrel-label-modal">100% Full</div>
+                        </button>
+                        <button class="barrel-option-btn" data-fill="75" data-multiplier="0.75">
+                            <div class="barrel-visual-modal three-quarter"></div>
+                            <div class="barrel-label-modal">75% Full</div>
+                        </button>
+                        <button class="barrel-option-btn" data-fill="50" data-multiplier="0.50">
+                            <div class="barrel-visual-modal half"></div>
+                            <div class="barrel-label-modal">50% Full</div>
+                        </button>
+                        <button class="barrel-option-btn" data-fill="25" data-multiplier="0.25">
+                            <div class="barrel-visual-modal quarter"></div>
+                            <div class="barrel-label-modal">25% Full</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-cancel-btn">Cancel</button>
+                    <button class="modal-ok-btn" disabled>OK</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/pricing.js"></script>

@@ -1,11 +1,59 @@
-// Candy Cannon Pricing - JavaScript
+// Candy Cannon Pricing - JavaScript with Modal Selection
 
-class PricingCalculator {
+const candyNames = {
+    'sour-punch-twists': 'Sour Punch Twists',
+    'lemonheads': 'Lemonheads',
+    'mexican-candy': 'Assorted Mexican Candy',
+    'peppermint': 'Peppermint',
+    'butterscotch': 'Butterscotch Disks',
+    'skittles': 'Skittles Fun Size',
+    'root-beer-barrels': 'Root Beer Barrels',
+    'milky-way': 'Milky Way Miniatures',
+    'jolly-rancher': 'Jolly Rancher',
+    'm-and-m-peanut': 'M&Ms Fun Size Peanut',
+    'snickers-mini': 'Snickers Mini Valentines',
+    'crown-milk-truffle': 'Crown Milk Chocolate Truffles',
+    'crown-dark-truffle': 'Crown Dark Chocolate Truffles',
+    'twix': 'Twix',
+    'starburst': 'Starburst',
+    'gummy-sunkist': 'Fruit Gummy Sunkist',
+    'riesen': 'Riesen',
+    'werthers': 'Werthers Original Hard Caramels',
+    'lindor-white': 'Lindor White Chocolate',
+    'lindor-milk': 'Lindor Milk Chocolate',
+    'lindor-dark': 'Lindor Dark Chocolate'
+};
+
+const candyImages = {
+    'sour-punch-twists': 'images/Sour_punch_twists.png',
+    'lemonheads': 'images/Lemonheads.png',
+    'mexican-candy': 'images/Assorted_Mexican_candy.png',
+    'peppermint': 'images/Peppermint.png',
+    'butterscotch': 'images/Butterscotch_disks.png',
+    'skittles': 'images/Skittles_fun_size.png',
+    'root-beer-barrels': 'images/Root_beer_barrels.png',
+    'milky-way': 'images/Milky_Way_miniatures.png',
+    'jolly-rancher': 'images/Jolly_rancher.png',
+    'm-and-m-peanut': 'images/Mms_fun_size_peanut.png',
+    'snickers-mini': 'images/Snickers_mini_valentines.png',
+    'crown-milk-truffle': 'images/Crown_Milk_chocolate_truffles.png',
+    'crown-dark-truffle': 'images/Crown_Dark_Chocolate_truffles.png',
+    'twix': 'images/Twix.png',
+    'starburst': 'images/Starburst.png',
+    'gummy-sunkist': 'images/Fruit_gummy_Sunkist.png',
+    'riesen': 'images/Riesen.png',
+    'werthers': 'images/Werthers_original_hard_caramels.png',
+    'lindor-white': 'images/Lindor_white_chocolate.png',
+    'lindor-milk': 'images/Lindor_milk_chocolate.png',
+    'lindor-dark': 'images/Lindor_dark_chocolate.png'
+};
+
+class PricingApp {
     constructor() {
-        this.selectedCandy = null;
-        this.selectedFill = null;
-        this.candyPrice = 0;
-        this.fillMultiplier = 1.0;
+        this.selections = [];
+        this.currentCandy = null;
+        this.currentPrice = 0;
+        this.selectedBarrel = null;
         
         this.init();
     }
@@ -17,99 +65,174 @@ class PricingCalculator {
     setupEventListeners() {
         // Candy button listeners
         document.querySelectorAll('.candy-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => this.selectCandy(e.target.closest('.candy-btn')));
+            btn.addEventListener('click', (e) => this.openBarrelModal(e.target.closest('.candy-btn')));
         });
 
-        // Barrel button listeners
-        document.querySelectorAll('.barrel-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => this.selectFill(e.target.closest('.barrel-btn')));
+        // Modal barrel option listeners
+        document.querySelectorAll('.barrel-option-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => this.selectBarrelOption(e.target.closest('.barrel-option-btn')));
         });
 
-        // Add to cart button
-        document.querySelector('.add-to-cart-btn').addEventListener('click', () => this.addToCart());
+        // Modal buttons
+        document.querySelector('.modal-ok-btn').addEventListener('click', () => this.confirmSelection());
+        document.querySelector('.modal-cancel-btn').addEventListener('click', () => this.closeBarrelModal());
+        document.querySelector('.close').addEventListener('click', () => this.closeBarrelModal());
+
+        // Add to cart
+        document.querySelector('.add-to-cart-btn').addEventListener('click', () => this.addAllToCart());
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('barrelModal');
+            if (e.target === modal) {
+                this.closeBarrelModal();
+            }
+        });
     }
 
-    selectCandy(btn) {
-        // Remove active class from all candy buttons
-        document.querySelectorAll('.candy-btn').forEach(b => b.classList.remove('active'));
+    openBarrelModal(candyBtn) {
+        this.currentCandy = candyBtn.dataset.candy;
+        this.currentPrice = parseFloat(candyBtn.dataset.price);
         
-        // Add active class to clicked button
+        const candyName = candyNames[this.currentCandy];
+        document.getElementById('modal-candy-name').textContent = `Select barrel fill level for: ${candyName}`;
+        
+        // Reset barrel selection
+        document.querySelectorAll('.barrel-option-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        this.selectedBarrel = null;
+        document.querySelector('.modal-ok-btn').disabled = true;
+
+        // Show modal
+        document.getElementById('barrelModal').style.display = 'block';
+    }
+
+    closeBarrelModal() {
+        document.getElementById('barrelModal').style.display = 'none';
+        this.currentCandy = null;
+        this.selectedBarrel = null;
+    }
+
+    selectBarrelOption(btn) {
+        // Remove active from all
+        document.querySelectorAll('.barrel-option-btn').forEach(b => b.classList.remove('active'));
+        
+        // Add active to selected
         btn.classList.add('active');
 
-        // Store selection
-        this.selectedCandy = btn.dataset.candy;
-        this.candyPrice = parseFloat(btn.dataset.price);
+        this.selectedBarrel = {
+            fill: btn.dataset.fill,
+            multiplier: parseFloat(btn.dataset.multiplier)
+        };
 
-        // Update summary
-        const candyName = btn.querySelector('.candy-name').textContent;
-        document.getElementById('selected-candy').textContent = candyName;
-        document.getElementById('base-price').textContent = `$${this.candyPrice.toFixed(2)}`;
-
-        this.updateTotal();
-        this.checkFormValidity();
+        // Enable OK button
+        document.querySelector('.modal-ok-btn').disabled = false;
     }
 
-    selectFill(btn) {
-        // Remove active class from all barrel buttons
-        document.querySelectorAll('.barrel-btn').forEach(b => b.classList.remove('active'));
+    confirmSelection() {
+        if (!this.currentCandy || !this.selectedBarrel) return;
+
+        const selection = {
+            candy: this.currentCandy,
+            candyName: candyNames[this.currentCandy],
+            candyImage: candyImages[this.currentCandy],
+            candyPrice: this.currentPrice,
+            fill: this.selectedBarrel.fill,
+            multiplier: this.selectedBarrel.multiplier,
+            total: (this.currentPrice * this.selectedBarrel.multiplier).toFixed(2)
+        };
+
+        this.selections.push(selection);
+        this.closeBarrelModal();
+        this.updatePreview();
+        this.updateSummary();
+    }
+
+    updatePreview() {
+        const previewDiv = document.getElementById('selections-preview');
         
-        // Add active class to clicked button
-        btn.classList.add('active');
-
-        // Store selection
-        this.selectedFill = btn.dataset.fill;
-        this.fillMultiplier = parseFloat(btn.dataset.multiplier);
-
-        // Update summary
-        document.getElementById('selected-fill').textContent = `${btn.dataset.fill}% Full`;
-
-        this.updateTotal();
-        this.checkFormValidity();
-    }
-
-    updateTotal() {
-        if (this.candyPrice && this.fillMultiplier) {
-            const adjustedPrice = this.candyPrice * this.fillMultiplier;
-            document.getElementById('total-price').textContent = `$${adjustedPrice.toFixed(2)}`;
+        if (this.selections.length === 0) {
+            previewDiv.innerHTML = '<p class="empty-preview">No items selected yet. Click on a candy to add it!</p>';
+            return;
         }
+
+        let html = '<div class="preview-items">';
+        
+        this.selections.forEach((selection, index) => {
+            html += `
+                <div class="preview-item">
+                    <div class="preview-item-image">
+                        <img src="${selection.candyImage}" alt="${selection.candyName}">
+                    </div>
+                    <div class="preview-item-details">
+                        <div class="preview-item-name">${selection.candyName}</div>
+                        <div class="preview-item-info">${selection.fill}% Barrel | $${selection.total}</div>
+                    </div>
+                    <button class="preview-item-remove" onclick="app.removeSelection(${index})">✕</button>
+                </div>
+            `;
+        });
+
+        html += '</div>';
+        previewDiv.innerHTML = html;
     }
 
-    checkFormValidity() {
+    removeSelection(index) {
+        this.selections.splice(index, 1);
+        this.updatePreview();
+        this.updateSummary();
+    }
+
+    updateSummary() {
+        let totalPrice = 0;
+        let totalBarrels = 0;
+
+        this.selections.forEach(selection => {
+            totalPrice += parseFloat(selection.total);
+            totalBarrels += (parseInt(selection.fill) / 100);
+        });
+
+        document.getElementById('total-items').textContent = this.selections.length;
+        document.getElementById('total-barrels').textContent = `🛢️ ${totalBarrels.toFixed(2)}`;
+        document.getElementById('total-price').textContent = `$${totalPrice.toFixed(2)}`;
+
+        // Enable add to cart if selections exist
         const addBtn = document.querySelector('.add-to-cart-btn');
-        if (this.selectedCandy && this.selectedFill) {
+        if (this.selections.length > 0) {
             addBtn.disabled = false;
         } else {
             addBtn.disabled = true;
         }
     }
 
-    addToCart() {
-        const fillPercent = this.selectedFill;
-        const totalPrice = (this.candyPrice * this.fillMultiplier).toFixed(2);
-        
-        const orderDetails = {
-            candy: this.selectedCandy,
-            candyPrice: this.candyPrice,
-            fill: fillPercent,
-            multiplier: this.fillMultiplier,
-            total: totalPrice,
-            timestamp: new Date().toISOString()
-        };
-
-        // Store in localStorage
+    addAllToCart() {
+        // Store all selections in localStorage
         let cart = JSON.parse(localStorage.getItem('candyCannon-cart')) || [];
-        cart.push(orderDetails);
+        
+        this.selections.forEach(selection => {
+            cart.push({
+                candy: selection.candy,
+                candyPrice: selection.candyPrice,
+                fill: selection.fill,
+                multiplier: selection.multiplier,
+                total: selection.total,
+                timestamp: new Date().toISOString()
+            });
+        });
+
         localStorage.setItem('candyCannon-cart', JSON.stringify(cart));
 
         // Show success message
-        this.showSuccessMessage(fillPercent, totalPrice);
+        this.showSuccessMessage();
     }
 
-    showSuccessMessage(fill, price) {
+    showSuccessMessage() {
         const btn = document.querySelector('.add-to-cart-btn');
         const originalText = btn.textContent;
+        const itemCount = this.selections.length;
 
-        btn.textContent = `✓ Added! ($${price})`;
+        btn.textContent = `✓ Added ${itemCount} item(s)!`;
         btn.style.background = 'linear-gradient(135deg, #11b981 0%, #059669 100%)';
 
         setTimeout(() => {
@@ -122,24 +245,14 @@ class PricingCalculator {
     }
 
     resetForm() {
-        document.querySelectorAll('.candy-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.barrel-btn').forEach(b => b.classList.remove('active'));
-        
-        this.selectedCandy = null;
-        this.selectedFill = null;
-        this.candyPrice = 0;
-        this.fillMultiplier = 1.0;
-
-        document.getElementById('selected-candy').textContent = 'Not selected';
-        document.getElementById('selected-fill').textContent = 'Not selected';
-        document.getElementById('base-price').textContent = '$0.00';
-        document.getElementById('total-price').textContent = '$0.00';
-
-        this.checkFormValidity();
+        this.selections = [];
+        this.updatePreview();
+        this.updateSummary();
     }
 }
 
 // Initialize when DOM is ready
+let app;
 document.addEventListener('DOMContentLoaded', () => {
-    new PricingCalculator();
+    app = new PricingApp();
 });
