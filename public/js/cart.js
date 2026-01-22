@@ -57,6 +57,7 @@ class ShoppingCart {
     init() {
         this.loadCart();
         this.renderCart();
+        this.setupClearCartButton();
     }
 
     loadCart() {
@@ -66,6 +67,21 @@ class ShoppingCart {
 
     saveCart() {
         localStorage.setItem('candyCannon-cart', JSON.stringify(this.cart));
+    }
+
+    setupClearCartButton() {
+        const clearBtn = document.getElementById('clear-cart-btn');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => this.clearCart());
+        }
+    }
+
+    clearCart() {
+        if (confirm('Are you sure you want to clear your entire cart? This action cannot be undone.')) {
+            this.cart = [];
+            this.saveCart();
+            this.renderCart();
+        }
     }
 
     renderCart() {
@@ -96,6 +112,7 @@ class ShoppingCart {
                 <tbody>
         `;
 
+        const LAUNCH_COST = 75.00;
         let total = 0;
         let totalBarrels = 0;
 
@@ -135,9 +152,17 @@ class ShoppingCart {
                         <span class="summary-label">Total Barrels:</span>
                         <span class="summary-value barrels-count">🛢️ ${totalBarrels.toFixed(2)}</span>
                     </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Candy Total:</span>
+                        <span class="summary-value">$${total.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Launch Cost:</span>
+                        <span class="summary-value">$${LAUNCH_COST.toFixed(2)}</span>
+                    </div>
                     <div class="summary-row total">
                         <span class="summary-label">Total:</span>
-                        <span class="summary-value">$${total.toFixed(2)}</span>
+                        <span class="summary-value">$${(total + LAUNCH_COST).toFixed(2)}</span>
                     </div>
                 </div>
             </div>

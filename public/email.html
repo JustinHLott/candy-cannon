@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candy Cannon - Request Launch</title>
+    <link rel="stylesheet" href="css/email.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="cart.html" class="nav-link">← Back to Cart</a>
+        <h1 class="main_header">Request Your Launch 🚀</h1>
+        <a href="index.html" class="home-icon" title="Home">🏠</a>
+    </div>
+
+    <div class="container">
+        <header>
+            <p>Provide your launch details and we'll confirm your candy cannon event</p>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <div class="cart-summary-preview" id="cart-summary">
+                    <!-- Cart summary will be rendered here -->
+                </div>
+
+                <form id="launch-request-form" class="launch-form">
+                    <div class="form-group">
+                        <label for="launch-address">Launch Site Address *</label>
+                        <textarea id="launch-address" name="launch-address" rows="3" placeholder="Enter the full address where you'd like your event (street, city, state, zip)" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="launch-date">Preferred Date *</label>
+                            <input type="date" id="launch-date" name="launch-date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="launch-time">Preferred Time *</label>
+                            <input type="time" id="launch-time" name="launch-time" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-email">Your Email Address *</label>
+                        <input type="email" id="contact-email" name="contact-email" placeholder="your.email@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-phone">Your Phone Number *</label>
+                        <input type="tel" id="contact-phone" name="contact-phone" placeholder="(123) 456-7890" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="special-requests">Special Requests (Optional)</label>
+                        <textarea id="special-requests" name="special-requests" rows="3" placeholder="Any special instructions or requests for your event?"></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <a href="cart.html" class="back-btn">← Back to Cart</a>
+                        <button type="submit" class="submit-btn">Send Request to Sugar Breaker</button>
+                    </div>
+                </form>
+
+                <div id="success-message" class="success-message" style="display: none;">
+                    <div class="success-content">
+                        <div class="success-icon">✓</div>
+                        <h2>Request Sent!</h2>
+                        <p>Thank you! We've received your launch request and will contact you shortly to confirm your candy cannon event.</p>
+                        <a href="index.html" class="home-btn">Return to Home</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="js/email.js"></script>
+</body>
+</html>

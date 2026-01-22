@@ -55,10 +55,17 @@ header {
     padding: 10px 0;
 }
 
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
 
 header p {
     font-size: 1.2em;
     opacity: 0.95;
+    flex: 1;
 }
 
 main {
@@ -87,6 +94,32 @@ main {
 .empty-cart p {
     font-size: 1.2em;
     margin-bottom: 20px;
+}
+
+/* Clear Cart Button */
+.clear-cart-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.clear-cart-btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.clear-cart-btn:active {
+    transform: translateY(0);
 }
 
 /* Cart Table */
@@ -274,6 +307,21 @@ main {
 @media (max-width: 768px) {
     header h1 {
         font-size: 2em;
+    }
+
+    .cart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .cart-header p {
+        width: 100%;
+        text-align: center;
+    }
+
+    .clear-cart-btn {
+        width: 100%;
     }
 
     .cart-table {
