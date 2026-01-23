@@ -123,6 +123,22 @@ class LaunchRequest {
         if (form) {
             form.addEventListener('submit', (e) => this.handleFormSubmit(e));
         }
+
+        // Set minimum date to tomorrow
+        const dateInput = document.getElementById('launch-date');
+        if (dateInput) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const minDate = tomorrow.toISOString().split('T')[0];
+            dateInput.setAttribute('min', minDate);
+        }
+
+        // Set time input constraints (8 AM to 10 PM only)
+        const timeInput = document.getElementById('launch-time');
+        if (timeInput) {
+            timeInput.setAttribute('min', '08:00');
+            timeInput.setAttribute('max', '22:00');
+        }
     }
 
     handleFormSubmit(e) {
