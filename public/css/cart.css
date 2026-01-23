@@ -42,7 +42,8 @@ body {
 
 .container {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0
+    ;
 }
 .main_header {
     color: white;
@@ -69,14 +70,16 @@ header p {
 }
 
 main {
+    width: 100%;
     display: grid;
-    gap: 30px;
+    gap: 5px;
 }
 
 .cart-section {
+    width: 100%;
     background: white;
     border-radius: 15px;
-    padding: 30px;
+    padding: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -101,15 +104,16 @@ main {
     background: #ff6b6b;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 0.95em;
+    font-size: 0.9em;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    white-space: nowrap;
+    white-space: normal;
+    min-width: fit-content;
 }
 
 .clear-cart-btn:hover {
@@ -254,6 +258,7 @@ main {
 
 /* Action Section */
 .action-section {
+    width: 100%;
     text-align: center;
 }
 
@@ -348,8 +353,12 @@ main {
 }
 
 @media (max-width: 480px) {
+    .container {
+        width: 100%;
+        margin: 0;
+    }
     .cart-section {
-        padding: 20px;
+        padding: 5px;
     }
 
     header h1 {
@@ -369,6 +378,7 @@ main {
 
     .clear-cart-btn {
         width: 100%;
+        flex-shrink: 0;
     }
 
     .cart-table {
@@ -377,7 +387,7 @@ main {
 
     .cart-table th,
     .cart-table td {
-        padding: 8px;
+        padding: 4px;
     }
 
     .summary-row {

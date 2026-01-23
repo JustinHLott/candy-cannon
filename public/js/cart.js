@@ -102,7 +102,7 @@ class ShoppingCart {
             <table class="cart-table">
                 <thead>
                     <tr>
-                        <th style="width: 10%;"></th>
+                        <th style="width: 5%;"></th>
                         <th style="width: 35%;">Candy Name</th>
                         <th style="width: 20%;">Barrel %</th>
                         <th style="width: 20%;">Price</th>
