@@ -2,6 +2,7 @@
 
 const candyNames = {
     'sour-punch-twists': 'Sour Punch Twists',
+    'salt-water-taffy': 'Salt Water Taffy',
     'lemonheads': 'Lemonheads',
     'mexican-candy': 'Assorted Mexican Candy',
     'peppermint': 'Peppermint',
@@ -9,9 +10,11 @@ const candyNames = {
     'skittles': 'Skittles Fun Size',
     'root-beer-barrels': 'Root Beer Barrels',
     'milky-way': 'Milky Way Miniatures',
+    'laffy-taffy': 'Laffy Taffy',
     'jolly-rancher': 'Jolly Rancher',
     'm-and-m-peanut': 'M&Ms Fun Size Peanut',
     'snickers-mini': 'Snickers Mini Valentines',
+    'tootsie-roll-mini': 'Tootsie Roll Mini',
     'crown-milk-truffle': 'Crown Milk Chocolate Truffles',
     'crown-dark-truffle': 'Crown Dark Chocolate Truffles',
     'twix': 'Twix',
@@ -26,6 +29,7 @@ const candyNames = {
 
 const candyImages = {
     'sour-punch-twists': 'images/Sour_punch_twists.png',
+    'salt-water-taffy': 'images/Salt_water_taffy.png',
     'lemonheads': 'images/Lemonheads.png',
     'mexican-candy': 'images/Assorted_Mexican_candy.png',
     'peppermint': 'images/Peppermint.png',
@@ -33,9 +37,11 @@ const candyImages = {
     'skittles': 'images/Skittles_fun_size.png',
     'root-beer-barrels': 'images/Root_beer_barrels.png',
     'milky-way': 'images/Milky_Way_miniatures.png',
+    'laffy-taffy': 'images/Laffy_taffy.png',
     'jolly-rancher': 'images/Jolly_rancher.png',
     'm-and-m-peanut': 'images/Mms_fun_size_peanut.png',
     'snickers-mini': 'images/Snickers_mini_valentines.png',
+    'tootsie-roll-mini': 'images/Tootsie_roll_mini.png',
     'crown-milk-truffle': 'images/Crown_Milk_chocolate_truffles.png',
     'crown-dark-truffle': 'images/Crown_Dark_Chocolate_truffles.png',
     'twix': 'images/Twix.png',
