@@ -9,6 +9,7 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     padding: 5px;
+    overflow-x: hidden;
 }
 
 .navbar {
@@ -84,8 +85,8 @@ main {
 /* Candy Options */
 .candy-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
     margin-top: 20px;
 }
 
@@ -93,7 +94,7 @@ main {
     background: white;
     border: 3px solid #ddd;
     border-radius: 12px;
-    padding: 20px;
+    padding: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
@@ -422,7 +423,7 @@ main {
 }
 
 .modal-body {
-    padding: 30px;
+    padding: 10px;
     overflow-y: auto;
     flex: 1;
 }
@@ -431,15 +432,15 @@ main {
     font-size: 1.2em;
     font-weight: 600;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: block;
 }
 
 .barrel-options-modal {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7.5px;
+    margin-bottom: 10px;
 }
 
 .barrel-option-btn {
@@ -515,8 +516,8 @@ main {
 
 .modal-footer {
     display: flex;
-    gap: 10px;
-    padding: 20px;
+    gap: 30px;
+    padding: 10px;
     flex-shrink: 0;
     background: white;
     border-top: 1px solid #eee;
@@ -525,7 +526,7 @@ main {
 
 .modal-cancel-btn,
 .modal-ok-btn {
-    padding: 12px 30px;
+    padding: 5px 10px;
     font-size: 1em;
     font-weight: 600;
     border: none;
@@ -564,14 +565,14 @@ main {
 .preview-section {
     background: white;
     border-radius: 15px;
-    padding: 30px;
+    padding: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .preview-section h2 {
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 1.8em;
     border-bottom: 3px solid #667eea;
     padding-bottom: 10px;
@@ -642,13 +643,14 @@ main {
     background: #ff4757;
     color: white;
     border: none;
-    width: 36px;
-    height: 36px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    font-size: 1.2em;
+    font-size: 1em;
     cursor: pointer;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    padding: 0;
 }
 
 .preview-item-remove:hover {
@@ -668,11 +670,11 @@ main {
     }
 
     .selection-section {
-        padding: 20px;
+        padding: 5px;
     }
 
     .summary-item {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
         gap: 5px;
     }
@@ -683,12 +685,19 @@ main {
     }
 
     .barrel-options-modal {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (max-width: 480px) {
-    .candy-options,
+    body {
+        padding: 0;
+    }
+
+    .candy-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .barrel-options {
         grid-template-columns: 1fr;
     }
@@ -698,12 +707,13 @@ main {
     }
 
     .preview-item {
-        flex-direction: column;
+        flex-direction: row;
         text-align: center;
     }
 
     .preview-item-remove {
-        width: 100%;
-        border-radius: 5px;
+        width: 3em;
+        height: 3em;
+        border-radius: 50%;
     }
 }
