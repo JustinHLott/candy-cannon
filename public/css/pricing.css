@@ -81,6 +81,7 @@ main {
     font-size: 1.8em;
     border-bottom: 3px solid #667eea;
     padding-bottom: 10px;
+    text-align: center;
 }
 
 /* Candy Options */
@@ -256,6 +257,7 @@ main {
     font-size: 1.8em;
     border-bottom: 3px solid #667eea;
     padding-bottom: 10px;
+    text-align: center;
 }
 
 .summary-box {
@@ -577,6 +579,7 @@ main {
     font-size: 1.8em;
     border-bottom: 3px solid #667eea;
     padding-bottom: 10px;
+    text-align: center;
 }
 
 .selections-preview {

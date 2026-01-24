@@ -19,6 +19,12 @@ body {
     margin-bottom: 20px;
 }
 
+.back-to {
+    font-size: 0.5em;
+    font-weight: 400;
+    vertical-align: middle;
+    text-align: center;
+}
 .nav-link,
 .pricing-icon,
 .cart-icon,
@@ -75,7 +81,7 @@ main {
     width: 100%;
     display: grid;
     gap: 5px;
-
+    margin-left: -4px;
 }
 
 .cart-section {

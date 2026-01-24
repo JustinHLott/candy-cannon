@@ -19,6 +19,17 @@ body {
     margin-bottom: 20px;
 }
 
+.navbar a {
+    text-decoration: none;
+}
+
+.back-to {  
+    font-size: 1em;
+    font-weight: 400;
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+}
 .nav-link,
 .home-icon {
     color: white;
@@ -47,6 +58,7 @@ body {
     color: white;
     font-size: 3em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 header {
