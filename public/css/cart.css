@@ -42,7 +42,7 @@ body {
 
 .container {
     max-width: 900px;
-    margin: 0
+    margin: auto
     ;
 }
 .main_header {
@@ -73,6 +73,7 @@ main {
     width: 100%;
     display: grid;
     gap: 5px;
+
 }
 
 .cart-section {

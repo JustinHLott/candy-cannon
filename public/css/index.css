@@ -107,7 +107,7 @@ main {
 
 /* Video Container */
 .video-container {
-    margin: 0 -10px 20px -10px;
+    margin: 10px;
     border-radius: 0;
     max-width: none;
     padding: 10px;
@@ -163,6 +163,7 @@ main {
 .cta-button {
     display: inline-block;
     padding: 15px 40px;
+    margin-bottom: 20px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     text-decoration: none;
@@ -185,7 +186,7 @@ main {
 .about-section {
     background: white;
     border-radius: 15px;
-    padding: 40px;
+    padding: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -237,7 +238,7 @@ main {
 .cta-section {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 15px;
-    padding: 50px 30px;
+    padding: 20px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     color: white;
