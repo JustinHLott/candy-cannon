@@ -21,6 +21,12 @@ body {
     gap: 10px;
 }
 
+.main_header {
+    color: white;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
 .cart-icon {
     font-size: 2em;
     cursor: pointer;
@@ -378,7 +384,7 @@ footer {
     }
 
     .cart-icon {
-        font-size: 1.5em;
+        font-size: 2.5em;
     }
 
     .cta-button,

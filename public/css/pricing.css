@@ -21,15 +21,16 @@ body {
 }
 .main_header {
     color: white;
-    font-size: 3em;
+    font-size: 2em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 .nav-link,
 .cart-icon,
 .home-icon {
     color: white;
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 2em;
     font-weight: 600;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -715,5 +716,9 @@ main {
         width: 3em;
         height: 3em;
         border-radius: 50%;
+    }
+    .cart-icon,
+    .home-icon {
+        font-size: 2.5em;
     }
 }
