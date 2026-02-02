@@ -172,7 +172,7 @@ class LaunchRequest {
         });
 
         const content = {
-            to_email: 'justin.h.lott.jhl@gmail.com',
+            to_email: 'CandyLaunching@gmail.com',
             customer_email: email,
             customer_phone: phone,
             launch_address: address,
@@ -220,24 +220,24 @@ class LaunchRequest {
                     console.log('Email sent successfully!', response);
                     this.showSuccessMessage();
                     submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Request to Sugar Breaker';
+                    submitBtn.textContent = 'Send Request to Sugar Launching';
                 })
                 .catch(error => {
                     console.error('Failed to send email:', error);
                     this.showErrorMessage('Failed to send request. Please try again.');
                     submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Request to Sugar Breaker';
+                    submitBtn.textContent = 'Send Request to Sugar Launching';
                 });
         }
     }
 
     sendViaAPI(emailParams, senderEmail, submitBtn) {
         // This creates a mailto link as a fallback when EmailJS isn't configured
-        const subject = 'Sugar Breaker Candy Cannon Launch Request';
+        const subject = 'Sugar Launching Candy Cannon Launch Request';
         const body = this.buildEmailBody(emailParams);
         
         // Create mailto link and open it
-        const mailtoLink = `mailto:justin.h.lott.jhl@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}&cc=${encodeURIComponent(senderEmail)}`;
+        const mailtoLink = `mailto:CandyLaunching@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}&cc=${encodeURIComponent(senderEmail)}`;
         
         // Open the default email client
         window.location.href = mailtoLink;
@@ -246,7 +246,7 @@ class LaunchRequest {
         setTimeout(() => {
             this.showSuccessMessage(true);
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Request to Sugar Breaker';
+            submitBtn.textContent = 'Send Request to Sugar Launching';
         }, 500);
     }
 
