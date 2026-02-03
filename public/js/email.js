@@ -95,7 +95,7 @@ class LaunchRequest {
                 <span class="summary-value"><strong>$${total.toFixed(2)}</strong></span>
             </div>
             <div class="summary-item">
-                <span><strong>Launch Fee:</strong></span>
+                <span><strong>Launch Base Fee:</strong></span>
                 <span class="summary-value"><strong>$${LAUNCH_COST.toFixed(2)}</strong></span>
             </div>
             <div class="summary-item total">
@@ -144,7 +144,11 @@ class LaunchRequest {
     handleFormSubmit(e) {
         e.preventDefault();
 
-        const launchAddress = document.getElementById('launch-address').value;
+        const streetAddress = document.getElementById('street-address').value;
+        const city = document.getElementById('city').value;
+        const state = document.getElementById('state').value;
+        const zip = document.getElementById('zip').value;
+
         const launchDate = document.getElementById('launch-date').value;
         const launchTime = document.getElementById('launch-time').value;
         const contactEmail = document.getElementById('contact-email').value;
@@ -153,7 +157,11 @@ class LaunchRequest {
 
         // Build email content
         const emailContent = this.buildEmailContent(
-            launchAddress,
+            streetAddress,
+            city,
+            state,
+            zip,
+
             launchDate,
             launchTime,
             contactEmail,
@@ -164,7 +172,7 @@ class LaunchRequest {
         this.sendEmail(emailContent, contactEmail);
     }
 
-    buildEmailContent(address, date, time, email, phone, requests) {
+    buildEmailContent(address, city, state, zip, date, time, email, phone, requests) {
         let itemsList = '';
         this.cartSummary.items.forEach(item => {
             const candyName = candyNames[item.candy] || item.candy;
@@ -176,6 +184,9 @@ class LaunchRequest {
             customer_email: email,
             customer_phone: phone,
             launch_address: address,
+            launch_city: city,
+            launch_state: state,
+            launch_zip: zip,
             launch_date: this.formatDate(date),
             launch_time: this.formatTime(time),
             special_requests: requests,
@@ -263,12 +274,13 @@ Requested Date: ${params.launch_date}
 Requested Time: ${params.launch_time}
 Launch Site Address:
 ${params.launch_address}
+${params.launch_city}, ${params.launch_state} ${params.launch_zip}
 
 CANDY ORDER:
 ${params.candy_items}
 
 Candy Total: $${params.candy_total}
-Launch Fee: $${params.launch_fee}
+Launch Base Fee: $${params.launch_fee}
 ---
 TOTAL COST: $${params.total_cost}
 Total Barrels: 🛢️ ${params.total_barrels}

@@ -26,21 +26,92 @@
 
                 <form id="launch-request-form" class="launch-form">
                     <div class="form-group">
-                        <label for="launch-address">Launch Site Address *</label>
-                        <textarea id="launch-address" name="launch-address" rows="3" placeholder="Enter the full address where you'd like your event (street, city, state, zip)" required></textarea>
+                        <label for="street-address">Launch Site Street Address *</label>
+                        <input
+                            type="text"
+                            id="street-address"
+                            name="street-address"
+                            placeholder="123 Main St"
+                            autocomplete="street-address"
+                            required
+                        >
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="City"
+                            autocomplete="address-level2"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State *</label>
+                        <input
+                            type="text"
+                            id="state"
+                            name="state"
+                            placeholder="State"
+                            autocomplete="address-level1"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zip">ZIP Code *</label>
+                        <input
+                            type="text"
+                            id="zip"
+                            name="zip"
+                            placeholder="12345"
+                            autocomplete="postal-code"
+                            required
+                        >
+                    </div>
+
+
                         <div class="form-group">
                             <label for="launch-date">Preferred Date *</label>
                             <input type="date" id="launch-date" name="launch-date" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="launch-time">Preferred Time *</label>
-                            <input type="time" id="launch-time" name="launch-time" required>
+                            <!--<label for="launch-time">Preferred Time *</label>
+                            <input type="time" id="launch-time" name="launch-time" required>-->
+                            <label>
+                                Time *
+                                <select id="hour" required>
+                                    <option value="">Hour</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+
+                                <select id="ampm" required>
+                                    <option value="">AM/PM</option>
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
+                            </label>
+
+                            <!-- This is what actually gets submitted -->
+                            <input type="hidden" name="launch-time" id="launch-time">
                         </div>
-                    </div>
+                        <div id="timeError"></div>
+
 
                     <div class="form-group">
                         <label for="contact-email">Your Email Address *</label>
@@ -49,7 +120,12 @@
 
                     <div class="form-group">
                         <label for="contact-phone">Your Phone Number *</label>
-                        <input type="tel" id="contact-phone" name="contact-phone" placeholder="(123) 456-7890" required>
+                        <input type="tel" id="contact-phone" name="contact-phone" placeholder="(123) 456-7890" 
+                        pattern="^(\(\d{3}\)|\d{3})[ -]?\d{3}[ -]?\d{4}$"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        required
+                        >
                     </div>
 
                     <div class="form-group">
@@ -75,6 +151,51 @@
         </main>
     </div>
 
+    <!--<script>
+        const input = document.getElementById("launch-time");
+
+        input.addEventListener("change", () => {
+            if (!input.value) return;
+
+            const [hour] = input.value.split(":");
+            input.value = `${hour.padStart(2, "0")}:00`;
+        });
+    </script>-->
+    <script>
+        const hourSelect = document.getElementById("hour");
+        const ampmSelect = document.getElementById("ampm");
+        const hiddenTime = document.getElementById("launch-time");
+        const timeError = document.getElementById("timeError");
+        timeError.style.color = "red";
+
+        function updateTime() {
+            const hour = parseInt(hourSelect.value, 10);
+            const ampm = ampmSelect.value;
+
+            if(hour > 10 && ampm =="PM"){
+                timeError.textContent = "Sorry, evening launches are not available after 10 PM.";
+                return;
+            }else if(hour < 8 && ampm =="AM"){
+                timeError.textContent = "Sorry, morning launches are not available before 8 AM.";
+                return;
+            }else{
+                timeError.textContent = "";
+            }
+
+            if (!hour || !ampm) {
+            hiddenTime.value = "";
+            return;
+            }
+
+            let h = hour % 12;
+            if (ampm === "PM") h += 12;
+
+            hiddenTime.value = `${String(h).padStart(2, "0")}:00`;
+        }
+
+        hourSelect.addEventListener("change", updateTime);
+        ampmSelect.addEventListener("change", updateTime);
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script src="js/email.js"></script>
 </body>
