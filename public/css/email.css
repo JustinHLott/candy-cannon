@@ -60,7 +60,17 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
+#hour, #ampm{
+    color: #333;
+    font-size: 1em;
+    text-align: center;
+    border: none;
+}
+.time-selectors {
+    display: flex;
+    gap: 10px;
 
+}
 header {
     text-align: center;
     color: white;
@@ -153,7 +163,8 @@ main {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group label div {
     padding: 12px 15px;
     border: 2px solid #ddd;
     border-radius: 8px;
